@@ -55,7 +55,7 @@ export const getAllPages = query({
 
 export const searchPagesByTitle = query({
   args: {
-    query: v.id("string"),
+    query: v.string(),
     num_collect: v.number()
   },
   handler: async (ctx, args) => {
@@ -82,7 +82,7 @@ export const searchPagesByTitle = query({
 
 export const searchPagesByMarkdown = query({
   args: {
-    query: v.id("string"),
+    query: v.string(),
     num_collect: v.number()
   },
   handler: async (ctx, args) => {
@@ -109,7 +109,7 @@ export const searchPagesByMarkdown = query({
 
 export const createPage = mutation({
   args: {
-    title: v.id("string"),
+    title: v.string(),
   },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
@@ -184,12 +184,10 @@ export const removePage = mutation({
   }
 });
 
-export const updatePage = mutation({
+export const updatePageTitle = mutation({
   args: {
     id: v.id("pages"),
-    title: v.optional(v.string()),
-    content: v.optional(v.string()),
-    markdown: v.optional(v.string()),
+    title: v.string(),
   },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
@@ -211,7 +209,39 @@ export const updatePage = mutation({
     }
 
     const page = await ctx.db.patch(args.id, {
-      title: args.title,
+      title: args.title
+    });
+
+    return page;
+  },
+});
+
+export const updatePageContent = mutation({
+  args: {
+    id: v.id("pages"),
+    content: v.string(),
+    markdown: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+
+    if (!identity) {
+      throw new Error("Unauthenticated");
+    }
+
+    const userId = identity.subject;
+
+    const existingPage = await ctx.db.get(args.id);
+
+    if (!existingPage) {
+      throw new Error("Page not found!");
+    }
+
+    if (existingPage.userId !== userId) {
+      throw new Error("Unauthorized!");
+    }
+
+    const page = await ctx.db.patch(args.id, {
       content: args.content,
       markdown: args.markdown
     });

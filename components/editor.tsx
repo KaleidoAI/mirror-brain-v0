@@ -14,7 +14,7 @@ import "@blocknote/core/style.css";
 import { useEdgeStore } from "@/lib/edgestore";
 
 interface EditorProps {
-  onChange: (value: string) => void;
+  onChange: (raw_content: string, markdown: string) => void;
   initialContent?: string;
   editable?: boolean;
 };
@@ -42,7 +42,9 @@ const Editor = ({
       ? JSON.parse(initialContent) as PartialBlock[] 
       : undefined,
     onEditorContentChange: (editor) => {
-      onChange(JSON.stringify(editor.topLevelBlocks, null, 2));
+      editor.blocksToMarkdown(editor.topLevelBlocks)
+        .then(markdown => 
+          onChange(JSON.stringify(editor.topLevelBlocks, null, 2), markdown));
     },
     uploadFile: handleUpload
   })

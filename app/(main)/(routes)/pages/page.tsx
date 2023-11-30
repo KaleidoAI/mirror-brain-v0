@@ -13,16 +13,16 @@ import { Button } from "@/components/ui/button";
 const DocumentsPage = () => {
   const router = useRouter();
   const { user } = useUser();
-  const create = useMutation(api.documents.create);
+  const create = useMutation(api.pages.createPage);
 
   const onCreate = () => {
     const promise = create({ title: "Untitled" })
-      .then((documentId) => router.push(`/documents/${documentId}`))
+      .then((documentId) => router.push(`/pages/${documentId}`))
 
     toast.promise(promise, {
-      loading: "Creating a new note...",
-      success: "New note created!",
-      error: "Failed to create a new note."
+      loading: "Creating a new page...",
+      success: "New page created!",
+      error: "Failed to create a new page."
     });
   };
 
@@ -43,14 +43,14 @@ const DocumentsPage = () => {
         className="hidden dark:block"
       />
       <h2 className="text-lg font-medium">
-        Welcome to {user?.firstName}&apos;s Jotion
+        Welcome to MirrorBrain
       </h2>
       <Button onClick={onCreate}>
         <PlusCircle className="h-4 w-4 mr-2" />
-        Create a note
+        Create a page
       </Button>
     </div>
-   );
+  );
 }
- 
+
 export default DocumentsPage;
