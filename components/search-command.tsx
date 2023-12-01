@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { File } from "lucide-react";
 import { useQuery } from "convex/react";
 import { useRouter } from "next/navigation";
 import { useUser } from "@clerk/clerk-react";
@@ -20,7 +19,7 @@ import { api } from "@/convex/_generated/api";
 export const SearchCommand = () => {
   const { user } = useUser();
   const router = useRouter();
-  const documents = useQuery(api.documents.getSearch);
+  const documents = useQuery(api.pages.getAllPages);
   const [isMounted, setIsMounted] = useState(false);
 
   const toggle = useSearch((store) => store.toggle);
@@ -44,7 +43,7 @@ export const SearchCommand = () => {
   }, [toggle]);
 
   const onSelect = (id: string) => {
-    router.push(`/documents/${id}`);
+    router.push(`/pages/${id}`);
     onClose();
   };
 
@@ -55,11 +54,11 @@ export const SearchCommand = () => {
   return (
     <CommandDialog open={isOpen} onOpenChange={onClose}>
       <CommandInput
-        placeholder={`Search ${user?.fullName}'s Jotion...`}
+        placeholder={`Search ${user?.fullName}'s Notes...`}
       />
       <CommandList>
         <CommandEmpty>No results found.</CommandEmpty>
-        <CommandGroup heading="Documents">
+        <CommandGroup heading="Pages">
           {documents?.map((document) => (
             <CommandItem
               key={document._id}
@@ -67,16 +66,7 @@ export const SearchCommand = () => {
               title={document.title}
               onSelect={() => onSelect(document._id)}
             >
-              {document.icon ? (
-                <p className="mr-2 text-[18px]">
-                  {document.icon}
-                </p>
-              ) : (
-                <File className="mr-2 h-4 w-4" />
-              )}
-              <span>
-                {document.title}
-              </span>
+              {document.title}
             </CommandItem>
           ))}
         </CommandGroup>

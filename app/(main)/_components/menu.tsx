@@ -19,7 +19,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 
 interface MenuProps {
-  documentId: Id<"documents">;
+  documentId: Id<"pages">;
 };
 
 export const Menu = ({
@@ -28,18 +28,18 @@ export const Menu = ({
   const router = useRouter();
   const { user } = useUser();
 
-  const archive = useMutation(api.documents.archive);
+  const remove = useMutation(api.pages.removePage);
 
-  const onArchive = () => {
-    const promise = archive({ id: documentId })
+  const onRemove = () => {
+    const promise = remove({ id: documentId })
 
     toast.promise(promise, {
-      loading: "Moving to trash...",
-      success: "Note moved to trash!",
-      error: "Failed to archive note."
+      loading: "Deleting page...",
+      success: "Page deleted!",
+      error: "Failed to delete page."
     });
 
-    router.push("/documents");
+    router.push("/pages");
   };
 
   return (
@@ -55,7 +55,7 @@ export const Menu = ({
         alignOffset={8} 
         forceMount
       >
-        <DropdownMenuItem onClick={onArchive}>
+        <DropdownMenuItem onClick={onRemove}>
           <Trash className="h-4 w-4 mr-2" />
           Delete
         </DropdownMenuItem>

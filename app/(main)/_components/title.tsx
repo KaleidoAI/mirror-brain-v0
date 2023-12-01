@@ -10,14 +10,14 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 
 interface TitleProps {
-  initialData: Doc<"documents">;
+  initialData: Doc<"pages">;
 };
 
 export const Title = ({
   initialData
 }: TitleProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const update = useMutation(api.documents.update);
+  const update = useMutation(api.pages.updatePageTitle);
 
   const [title, setTitle] = useState(initialData.title || "Untitled");
   const [isEditing, setIsEditing] = useState(false);
@@ -55,7 +55,6 @@ export const Title = ({
 
   return (
     <div className="flex items-center gap-x-1">
-      {!!initialData.icon && <p>{initialData.icon}</p>}
       {isEditing ? (
         <Input
           ref={inputRef}

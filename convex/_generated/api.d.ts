@@ -14,7 +14,11 @@ import type {
   FilterApi,
   FunctionReference,
 } from "convex/server";
-import type * as documents from "../documents";
+import type * as chat_messages from "../chat/messages";
+import type * as chat_sessions from "../chat/sessions";
+import type * as pages from "../pages";
+import type * as relations from "../relations";
+import type * as utils from "../utils";
 
 /**
  * A utility for referencing Convex functions in your app's API.
@@ -25,7 +29,11 @@ import type * as documents from "../documents";
  * ```
  */
 declare const fullApi: ApiFromModules<{
-  documents: typeof documents;
+  "chat/messages": typeof chat_messages;
+  "chat/sessions": typeof chat_sessions;
+  pages: typeof pages;
+  relations: typeof relations;
+  utils: typeof utils;
 }>;
 export declare const api: FilterApi<
   typeof fullApi,
