@@ -18,6 +18,7 @@ import type * as chat_messages from "../chat/messages";
 import type * as chat_sessions from "../chat/sessions";
 import type * as pages from "../pages";
 import type * as relations from "../relations";
+import type * as unsafe from "../unsafe";
 import type * as utils from "../utils";
 
 /**
@@ -33,6 +34,7 @@ declare const fullApi: ApiFromModules<{
   "chat/sessions": typeof chat_sessions;
   pages: typeof pages;
   relations: typeof relations;
+  unsafe: typeof unsafe;
   utils: typeof utils;
 }>;
 export declare const api: FilterApi<
