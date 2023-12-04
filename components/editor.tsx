@@ -10,17 +10,21 @@ import {
   useBlockNote
 } from "@blocknote/react";
 import "@blocknote/core/style.css";
+import { setupSuggestionsMenu } from "@blocknote/core"
+import { PluginKey } from "prosemirror-state";
 
 import { useEdgeStore } from "@/lib/edgestore";
 
 interface EditorProps {
-  onChange: (raw_content: string, markdown: string) => void;
+  updateContent: (raw_content: string) => void;
+  updateMarkdown: (markdown: string) => void;
   initialContent?: string;
   editable?: boolean;
 };
 
 const Editor = ({
-  onChange,
+  updateContent,
+  updateMarkdown,
   initialContent,
   editable
 }: EditorProps) => {
@@ -39,15 +43,39 @@ const Editor = ({
     editable,
     initialContent: 
       initialContent 
-      ? JSON.parse(initialContent) as PartialBlock[] 
+      ? JSON.parse(initialContent) //as PartialBlock[] 
       : undefined,
     onEditorContentChange: (editor) => {
-      editor.blocksToMarkdown(editor.topLevelBlocks)
+      updateContent(JSON.stringify(editor.topLevelBlocks, null, 2));
+      editor.blocksToMarkdownLossy(editor.topLevelBlocks)
         .then(markdown => 
-          onChange(JSON.stringify(editor.topLevelBlocks, null, 2), markdown));
+          updateMarkdown(markdown));
     },
     uploadFile: handleUpload
   })
+
+  // const linkMenuPluginKey = new PluginKey("LinkMenuPlugin");
+
+  // const suggestions = setupSuggestionsMenu(
+  //   editor,
+  //   (state) => {
+  //     // this.emit("update", state);
+  //   },
+  //   linkMenuPluginKey,
+  //   "@",
+  //   (query) => [{name: "abc"}, {name: "def"}],
+  //     // items.filter(
+  //     //   ({ name, aliases }: SlashMenuItem) =>
+  //     //     name.toLowerCase().startsWith(query.toLowerCase()) ||
+  //     //     (aliases &&
+  //     //       aliases.filter((alias) =>
+  //     //         alias.toLowerCase().startsWith(query.toLowerCase())
+  //     //       ).length !== 0)
+  //     // ),
+  //   // ({ item, editor }) => item.execute(editor)
+  // );
+
+  // editor._tiptapEditor.registerPlugin(suggestions.plugin);
 
   return (
     <div>
