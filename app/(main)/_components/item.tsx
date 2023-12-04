@@ -48,11 +48,11 @@ export const Item = ({
   ) => {
     event.stopPropagation();
     if (!id) return;
-    const promise = remove({ id })
-      .then(() => router.push("/pages"))
+    router.push("/pages");
+    const promise = remove({ id });
 
     toast.promise(promise, {
-      loading: "Deleting Page...",
+      loading: "Deleting page...",
       success: "Page deleted!",
       error: "Failed to delete page."
     });
