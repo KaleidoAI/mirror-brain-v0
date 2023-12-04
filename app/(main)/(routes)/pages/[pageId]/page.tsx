@@ -24,12 +24,19 @@ const PageIdPage = ({
     id: params.pageId
   });
 
-  const update = useMutation(api.pages.updatePageContent);
+  const updatePageContent = useMutation(api.pages.updatePageContent);
+  const updatePageMarkdown = useMutation(api.pages.updatePageMarkdown);
 
-  const onChange = (raw_content: string, markdown: string) => {
-    update({
+  const updateContent = (raw_content: string) => {
+    updatePageContent({
       id: params.pageId,
-      content: raw_content,
+      content: raw_content
+    });
+  };
+
+  const updateMarkdown = (markdown: string) => {
+    updatePageMarkdown({
+      id: params.pageId,
       markdown
     });
   };
@@ -58,7 +65,8 @@ const PageIdPage = ({
       <div className="md:max-w-3xl lg:max-w-4xl mx-auto">
         <Toolbar initialData={document} />
         <Editor
-          onChange={onChange}
+          updateContent={updateContent}
+          updateMarkdown={updateMarkdown}
           initialContent={document.content}
         />
       </div>

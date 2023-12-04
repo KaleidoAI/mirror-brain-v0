@@ -220,6 +220,37 @@ export const updatePageContent = mutation({
   args: {
     id: v.id("pages"),
     content: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+
+    if (!identity) {
+      throw new Error("Unauthenticated");
+    }
+
+    const userId = identity.subject;
+
+    const existingPage = await ctx.db.get(args.id);
+
+    if (!existingPage) {
+      throw new Error("Page not found!");
+    }
+
+    if (existingPage.userId !== userId) {
+      throw new Error("Unauthorized!");
+    }
+
+    const page = await ctx.db.patch(args.id, {
+      content: args.content
+    });
+
+    return page;
+  },
+});
+
+export const updatePageMarkdown = mutation({
+  args: {
+    id: v.id("pages"),
     markdown: v.string(),
   },
   handler: async (ctx, args) => {
@@ -242,7 +273,6 @@ export const updatePageContent = mutation({
     }
 
     const page = await ctx.db.patch(args.id, {
-      content: args.content,
       markdown: args.markdown
     });
 
