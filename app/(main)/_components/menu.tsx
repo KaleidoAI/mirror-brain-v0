@@ -31,6 +31,8 @@ export const Menu = ({
   const remove = useMutation(api.pages.removePage);
 
   const onRemove = () => {
+    router.push("/pages");
+    
     const promise = remove({ id: documentId })
 
     toast.promise(promise, {
@@ -38,8 +40,6 @@ export const Menu = ({
       success: "Page deleted!",
       error: "Failed to delete page."
     });
-
-    router.push("/pages");
   };
 
   return (
