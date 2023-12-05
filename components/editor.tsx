@@ -4,14 +4,12 @@ import { useTheme } from "next-themes";
 import {
   BlockNoteEditor,
   PartialBlock
-} from "@blocknote/core";
+} from "@/packages/core/src";
 import {
   BlockNoteView,
   useBlockNote
-} from "@blocknote/react";
-import "@blocknote/core/style.css";
-import { setupSuggestionsMenu } from "@blocknote/core"
-import { PluginKey } from "prosemirror-state";
+} from "@/packages/react/src";
+import "@/packages/core/style.css";
 
 import { useEdgeStore } from "@/lib/edgestore";
 
@@ -45,7 +43,7 @@ const Editor = ({
       initialContent 
       ? JSON.parse(initialContent) //as PartialBlock[] 
       : undefined,
-    onEditorContentChange: (editor) => {
+    onEditorContentChange: (editor: BlockNoteEditor) => {
       updateContent(JSON.stringify(editor.topLevelBlocks, null, 2));
       editor.blocksToMarkdownLossy(editor.topLevelBlocks)
         .then(markdown => 
@@ -53,29 +51,6 @@ const Editor = ({
     },
     uploadFile: handleUpload
   })
-
-  // const linkMenuPluginKey = new PluginKey("LinkMenuPlugin");
-
-  // const suggestions = setupSuggestionsMenu(
-  //   editor,
-  //   (state) => {
-  //     // this.emit("update", state);
-  //   },
-  //   linkMenuPluginKey,
-  //   "@",
-  //   (query) => [{name: "abc"}, {name: "def"}],
-  //     // items.filter(
-  //     //   ({ name, aliases }: SlashMenuItem) =>
-  //     //     name.toLowerCase().startsWith(query.toLowerCase()) ||
-  //     //     (aliases &&
-  //     //       aliases.filter((alias) =>
-  //     //         alias.toLowerCase().startsWith(query.toLowerCase())
-  //     //       ).length !== 0)
-  //     // ),
-  //   // ({ item, editor }) => item.execute(editor)
-  // );
-
-  // editor._tiptapEditor.registerPlugin(suggestions.plugin);
 
   return (
     <div>
