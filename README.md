@@ -9,7 +9,7 @@ git clone https://github.com/KaleidoAI/mirror-brain-v0.git
 ### Install packages
 
 ```shell
-npm i
+pnpm i
 ```
 
 ### Setup .env file
@@ -26,5 +26,5 @@ npx convex dev
 ### Start the app
 
 ```shell
-npm run dev
+pnpm run dev
 ```
