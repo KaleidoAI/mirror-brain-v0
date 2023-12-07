@@ -20,7 +20,6 @@ pnpm i
 
 ```shell
 npx convex dev
-
 ```
 
 ### Start the app
