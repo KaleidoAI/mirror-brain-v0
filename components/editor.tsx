@@ -47,7 +47,7 @@ const Editor = ({
       : undefined,
     onEditorContentChange: (editor) => {
       updateContent(JSON.stringify(editor.topLevelBlocks, null, 2));
-      editor.blocksToMarkdownLossy(editor.topLevelBlocks)
+      editor.blocksToMarkdown(editor.topLevelBlocks)
         .then(markdown => 
           updateMarkdown(markdown));
     },
