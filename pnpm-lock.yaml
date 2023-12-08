@@ -6,11 +6,11 @@ settings:
 
 dependencies:
   '@blocknote/core':
-    specifier: ^0.10.0
-    version: 0.10.0
+    specifier: ^0.10.1
+    version: 0.10.1
   '@blocknote/react':
-    specifier: ^0.10.0
-    version: 0.10.0(@tiptap/pm@2.1.13)(@types/react@18.2.42)(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^0.10.1
+    version: 0.10.1(@tiptap/pm@2.1.13)(@types/react@18.2.42)(react-dom@18.2.0)(react@18.2.0)
   '@clerk/clerk-react':
     specifier: ^4.26.3
     version: 4.28.2(react@18.2.0)
@@ -51,7 +51,7 @@ dependencies:
     specifier: ^0.2.0
     version: 0.2.0(@types/react@18.2.42)(react-dom@18.2.0)(react@18.2.0)
   convex:
-    specifier: ^1.3.1
+    specifier: ^1.6.3
     version: 1.6.3(@clerk/clerk-react@4.28.2)(react-dom@18.2.0)(react@18.2.0)
   emoji-picker-react:
     specifier: ^4.5.2
@@ -795,8 +795,8 @@ packages:
       to-fast-properties: 2.0.0
     dev: false
 
-  /@blocknote/core@0.10.0:
-    resolution: {integrity: sha512-8IJvD97762qviBcjoN+Vm+sSvBiaHeMu/ylw4BwQnYzZXBZHmhtVkWjBM4zXwY5hQCQIo4qcrvtkwyOIqiE54Q==}
+  /@blocknote/core@0.10.1:
+    resolution: {integrity: sha512-3IbBwKqfKpSskcFwR8gjiL0W5hvuGv9NRyBCCtSnHdgpEg+5O6PVsMulzh82nOqe4Ahb9cii8ET4gFEZkD154g==}
     dependencies:
       '@emotion/cache': 11.11.0
       '@emotion/serialize': 1.1.2
@@ -844,13 +844,13 @@ packages:
       - supports-color
     dev: false
 
-  /@blocknote/react@0.10.0(@tiptap/pm@2.1.13)(@types/react@18.2.42)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-03cwbaI/Bau0pVxyv8ZhhKgX1M2av7C/XvUe3lS7yrmNvWlrvAhLA3LU8+oVdVwezl6KYliOU9Q3hec0uAGhkg==}
+  /@blocknote/react@0.10.1(@tiptap/pm@2.1.13)(@types/react@18.2.42)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-rp+43SyrrdMnq4rCsqFz2T6c5FHKpzrYCpaZI6CaZPs3eTbySaAtc40OT9JHz6eF91fqVHGXomq/hqF0okeVTw==}
     peerDependencies:
       react: ^18
       react-dom: ^18
     dependencies:
-      '@blocknote/core': 0.10.0
+      '@blocknote/core': 0.10.1
       '@emotion/react': 11.11.1(@types/react@18.2.42)(react@18.2.0)
       '@mantine/core': 5.10.5(@emotion/react@11.11.1)(@mantine/hooks@5.10.5)(@types/react@18.2.42)(react-dom@18.2.0)(react@18.2.0)
       '@mantine/hooks': 5.10.5(react@18.2.0)

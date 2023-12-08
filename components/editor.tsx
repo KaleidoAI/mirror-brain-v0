@@ -11,7 +11,6 @@ import {
 } from "@blocknote/react";
 import "@blocknote/core/style.css";
 import { setupSuggestionsMenu } from "@blocknote/core"
-import { PluginKey } from "prosemirror-state";
 
 import { useEdgeStore } from "@/lib/edgestore";
 
