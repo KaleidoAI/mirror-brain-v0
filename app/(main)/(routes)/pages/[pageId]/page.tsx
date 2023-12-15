@@ -69,6 +69,7 @@ const PageIdPage = ({
           updateMarkdown={updateMarkdown}
           initialContent={document.content}
           editable={true}
+          id={params.pageId}
         />
       </div>
     </div>

@@ -70,6 +70,16 @@ body,
     --input: 0 0% 14.9%;
     --ring: 0 0% 83.1%;
   }
+
+  .editorLink a {
+    @apply text-sky-500;
+  }
+
+  .editorLink a:hover {
+    @apply text-sky-700;
+    @apply underline;
+    @apply cursor-pointer;
+  }
 }
  
 @layer base {

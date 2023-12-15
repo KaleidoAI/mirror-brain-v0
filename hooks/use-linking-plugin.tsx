@@ -1,8 +1,14 @@
-import { LinkingMenuItem } from "@/components/blockNote/linking-menu-positioner";
-import { SuggestionMenuReturn, SuggestionPluginManager, setupSuggestionsMenu } from "@/lib/blockNote/suggestion-plugin";
 import { DependencyList, useMemo, useRef, useEffect } from "react";
-import type { BlockNoteEditor } from "@blocknote/core";
 import { PluginKey } from "prosemirror-state";
+import type { BlockNoteEditor } from "@blocknote/core";
+
+import { LinkingMenuItem } from "@/components/blockNote/linking-menu-positioner";
+import { 
+  SuggestionMenuReturn, 
+  SuggestionPluginManager, 
+  setupSuggestionsMenu 
+} from "@/lib/blockNote/suggestion-plugin";
+import { deleteFrom } from "@/lib/blockNote/editor-utils";
 
 export const useLinkingPlugin = <
   T extends LinkingMenuItem
@@ -42,19 +48,12 @@ export const useLinkingOnSelectItem = <
 >(
   editor: BlockNoteEditor,
   suggestionPluginManager: SuggestionPluginManager<T>,
-  onSelectLink: (item: LinkingMenuItem, editor: BlockNoteEditor) => void
+  onSelectLink: (item: T, editor: BlockNoteEditor) => void
 ) => {
   useEffect(() => {
     return suggestionPluginManager.registerOnSelectItem(
       (queryRangeFrom, item) => {
-        editor._tiptapEditor
-          .chain()
-          .focus()
-          .deleteRange({
-            from: queryRangeFrom,
-            to: editor._tiptapEditor.state.selection.from,
-          })
-          .run();
+        deleteFrom(queryRangeFrom, editor)
   
         onSelectLink(item, editor);
       }
