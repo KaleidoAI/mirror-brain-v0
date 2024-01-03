@@ -85,6 +85,7 @@ export const createRelation = mutation({
       v.literal("in-text"),
       v.literal("whole-text"),
     ),
+    blockNoteIds: v.optional(v.array(v.string())),
   },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
@@ -98,6 +99,7 @@ export const createRelation = mutation({
       toPage: args.toPage,
       context: args.context,
       type: args.type,
+      blockNoteIds: args.blockNoteIds,
     });
 
     return relation;
@@ -124,6 +126,36 @@ export const updateRelationContext = mutation({
 
     const relation = await ctx.db.patch(args.id, {
       context: args.context,
+    });
+
+    return relation;
+  },
+});
+
+export const updateRelationBlockId = mutation({
+  args: {
+    id: v.id("pageRelations"),
+    blockNoteId: v.string()
+  },
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+
+    if (!identity) {
+      throw new Error("Unauthenticated");
+    }
+
+    const existingRelation = await ctx.db.get(args.id);
+
+    if (!existingRelation) {
+      throw new Error("Relation not found!");
+    }
+
+    let existingIds = existingRelation.blockNoteIds;
+    if (!existingIds) existingIds = [];
+    existingIds.push(args.blockNoteId);
+
+    const relation = await ctx.db.patch(args.id, {
+      blockNoteIds: existingIds,
     });
 
     return relation;

@@ -28,9 +28,11 @@ export default defineSchema({
       v.literal("in-text"),
       v.literal("whole-text"),
     ),
+    blockNoteIds: v.optional(v.array(v.string())),
   })
   .index("by_page", ["fromPage"])
   .index("by_backPage", ["toPage"])
+  .index("by_page_backPage_type", ["fromPage", "toPage", "type"])
   .index("by_page_type", ["fromPage", "type"]),
 
   ...chatTables,
