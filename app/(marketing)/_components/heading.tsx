@@ -17,7 +17,7 @@ export const Heading = () => {
         Link the way you think
       </h1>
       <p className="text-xs sm:text-base md:text-lg font-normal	text-[#ececec]/60">
-        Unlock your mind's potential by effortlessly connecting new <br />
+        Unlock your mind&apos;s potential by effortlessly connecting new <br />
         insights to existing knowledge.
       </p>
       {isLoading && (

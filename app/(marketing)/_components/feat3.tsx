@@ -15,7 +15,7 @@ export const Feat3 = () => {
             Everything Everywhere All at <span className="line-through">Once</span> MirrorBrain!
           </h1>
           <p className="text-xs sm:text-sm md:text-base text-[#bbbbbb] font-normal">
-            MirrorBrain ensures your entire knowledge base is accessible at all times, providing on-the-spot related notes and comprehensive context, so you're always fully informed.
+            MirrorBrain ensures your entire knowledge base is accessible at all times, providing on-the-spot related notes and comprehensive context, so you&apos;re always fully informed.
           </p>
           <Button variant={"outline"} className="text-xs sm:text-sm rounded-full px-5 bg-[rgba(23,14,44,0.0) hover:bg-[#0B0121] border-[#ececec]">
               Try MirrorBrain
