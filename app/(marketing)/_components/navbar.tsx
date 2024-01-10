@@ -18,29 +18,30 @@ export const Navbar = () => {
 
   return (
     <div className={cn(
-      "z-50 bg-background dark:bg-[#1F1F1F] fixed top-0 flex items-center w-full p-6",
+      "z-50 bg-[#0B0121] fixed top-0 flex items-center w-full px-10 sm:px-20 md:px-28 py-6",
       scrolled && "border-b shadow-sm"
     )}>
       <Logo />
-      <div className="md:ml-auto md:justify-end justify-between w-full flex items-center gap-x-2">
+      <div className="md:ml-auto md:justify-end justify-between w-full flex items-center gap-x-10">
         {isLoading && (
           <Spinner />
         )}
         {!isAuthenticated && !isLoading && (
           <>
-            <SignInButton mode="modal">
-              <Button variant="ghost" size="sm">
-                Log in
-              </Button>
-            </SignInButton>
-            <SignInButton mode="modal">
-              <Button size="sm">
-                Get Jotion free
-              </Button>
-            </SignInButton>
+            <Button className="text-xs sm:text-sm" variant="ghost" size="sm">
+              <Link href="#features">
+                Features
+              </Link>
+            </Button>
+            <Button className="text-xs sm:text-sm" variant="ghost" size="sm">
+              About us
+            </Button>
+            <Button size="sm" className="rounded-full px-5 text-xs sm:text-sm">
+              Try MirrorBrain
+            </Button>
           </>
         )}
-        {isAuthenticated && !isLoading && (
+        {/* {isAuthenticated && !isLoading && (
           <>
             <Button variant="ghost" size="sm" asChild>
               <Link href="/pages">
@@ -51,8 +52,8 @@ export const Navbar = () => {
               afterSignOutUrl="/"
             />
           </>
-        )}
-        <ModeToggle />
+        )} */}
+        {/* <ModeToggle /> */}
       </div>
     </div>
   )

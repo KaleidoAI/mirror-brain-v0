@@ -14,20 +14,17 @@ export const Logo = () => {
       <Image
         src="/logo.svg"
         height="40"
-        width="40"
+        width="141"
         alt="Logo"
         className="dark:hidden"
       />
       <Image
-        src="/logo-dark.svg"
+        src="/logo.svg"
         height="40"
-        width="40"
+        width="141"
         alt="Logo"
         className="hidden dark:block"
       />
-      <p className={cn("font-semibold", font.className)}>
-        Jotion
-      </p>
     </div>
   )
 }

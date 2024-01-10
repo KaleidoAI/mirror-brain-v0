@@ -1,5 +1,5 @@
 import { Toaster } from "sonner";
-import { Inter } from 'next/font/google'
+import { Montserrat } from 'next/font/google'
 import type { Metadata } from 'next'
 
 import { ThemeProvider } from '@/components/providers/theme-provider'
@@ -9,22 +9,22 @@ import { EdgeStoreProvider } from "@/lib/edgestore";
 
 import './globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
+const mont = Montserrat({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Jotion',
-  description: 'The connected workspace where better, faster work happens.',
+  title: 'MirrorBrain',
+  description: 'Unlock your mind\'s potential by effortlessly connecting new insights to existing knowledge.',
   icons: {
     icon: [
       {
         media: "(prefers-color-scheme: light)",
-        url: "/logo.svg",
-        href: "/logo.svg",
+        url: "/logo-icon.svg",
+        href: "/logo-icon.svg",
       },
       {
         media: "(prefers-color-scheme: dark)",
-        url: "/logo-dark.svg",
-        href: "/logo-dark.svg",
+        url: "/logo-icon.svg",
+        href: "/logo-icon.svg",
       }
     ]
   }
@@ -37,7 +37,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={mont.className}>
         <ConvexClientProvider>
           <EdgeStoreProvider>
             <ThemeProvider
