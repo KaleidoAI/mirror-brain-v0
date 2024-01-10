@@ -12,19 +12,19 @@ import './globals.css'
 const mont = Montserrat({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Jotion',
-  description: 'The connected workspace where better, faster work happens.',
+  title: 'MirrorBrain',
+  description: 'Unlock your mind\'s potential by effortlessly connecting new insights to existing knowledge.',
   icons: {
     icon: [
       {
         media: "(prefers-color-scheme: light)",
-        url: "/logo.svg",
-        href: "/logo.svg",
+        url: "/logo-icon.svg",
+        href: "/logo-icon.svg",
       },
       {
         media: "(prefers-color-scheme: dark)",
-        url: "/logo-dark.svg",
-        href: "/logo-dark.svg",
+        url: "/logo-icon.svg",
+        href: "/logo-icon.svg",
       }
     ]
   }
