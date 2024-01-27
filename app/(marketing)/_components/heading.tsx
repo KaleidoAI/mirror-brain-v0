@@ -1,15 +1,8 @@
 "use client";
 
-import { useConvexAuth } from "convex/react";
-import { ArrowRight } from "lucide-react";
-import { SignInButton } from "@clerk/clerk-react";
-import Link from "next/link";
-
-import { Button } from "@/components/ui/button";
-import { Spinner } from "@/components/spinner";
+import Script from 'next/script';
 
 export const Heading = () => {
-  const { isAuthenticated, isLoading } = useConvexAuth();
 
   return (
     <div className="max-w-3xl space-y-6">
@@ -20,27 +13,8 @@ export const Heading = () => {
         Unlock your mind&apos;s potential by effortlessly connecting new <br />
         insights to existing knowledge.
       </p>
-      {isLoading && (
-        <div className="w-full flex items-center justify-center">
-          <Spinner size="lg" />
-        </div>
-      )}
-      <div></div>
-      {isAuthenticated && !isLoading && (
-        <Button asChild className="rounded-full px-5 text-xs sm:text-sm">
-          <Link href="/pages">
-            Try MirrorBrain
-          </Link>
-        </Button>
-      )}
-      {!isAuthenticated && !isLoading && (
-        <SignInButton mode="modal">
-          <Button className="rounded-full px-5 text-xs sm:text-sm">
-            Try MirrorBrain
-            <ArrowRight className="h-4 w-4 ml-2" />
-          </Button>
-        </SignInButton>
-      )}
+      <div id="getWaitlistContainer" className="flex flex-row items-center justify-center" data-waitlist_id="10533" data-widget_type="WIDGET_2"></div>
+      <Script src="https://prod-waitlist-widget.s3.us-east-2.amazonaws.com/getwaitlist.min.js" />
     </div>
   )
 }
