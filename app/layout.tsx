@@ -1,7 +1,6 @@
 import { Toaster } from "sonner";
 import { Montserrat } from 'next/font/google'
 import type { Metadata } from 'next'
-import { Head } from 'next/document'
 
 import { ThemeProvider } from '@/components/providers/theme-provider'
 import { ConvexClientProvider } from '@/components/providers/convex-provider'
