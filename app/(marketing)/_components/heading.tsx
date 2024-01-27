@@ -14,7 +14,9 @@ export const Heading = () => {
         insights to existing knowledge.
       </p>
       <div id="getWaitlistContainer" className="flex flex-row items-center justify-center" data-waitlist_id="10533" data-widget_type="WIDGET_2"></div>
-      <Script src="https://prod-waitlist-widget.s3.us-east-2.amazonaws.com/getwaitlist.min.js" />
+      <Script 
+        strategy="lazyOnload"
+        src="https://prod-waitlist-widget.s3.us-east-2.amazonaws.com/getwaitlist.min.js" />
     </div>
   )
 }
