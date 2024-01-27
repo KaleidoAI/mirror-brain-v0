@@ -1,6 +1,7 @@
 import { Toaster } from "sonner";
 import { Montserrat } from 'next/font/google'
 import type { Metadata } from 'next'
+import { Head } from 'next/document'
 
 import { ThemeProvider } from '@/components/providers/theme-provider'
 import { ConvexClientProvider } from '@/components/providers/convex-provider'
@@ -8,6 +9,7 @@ import { ModalProvider } from "@/components/providers/modal-provider";
 import { EdgeStoreProvider } from "@/lib/edgestore";
 
 import './globals.css'
+import './getwaitlist.min.css'
 
 const mont = Montserrat({ subsets: ['latin'] })
 
